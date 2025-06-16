@@ -4,6 +4,8 @@
 #include "SimpleDogClassifier.h"
 #include <iostream>
 #include <chrono>
+#include <filesystem>
+#include <fstream>
 
 int main(int argc, char *argv[])
 {
@@ -20,12 +22,6 @@ int main(int argc, char *argv[])
     else
     {
         std::cout << "运行模式: 优化版 (推荐)" << std::endl;
-        std::cout << "优化特性:" << std::endl;
-        std::cout << "  ✓ 智能ROI提取 (优先头部区域)" << std::endl;
-        std::cout << "  ✓ 数据增强 (翻转、旋转、亮度)" << std::endl;
-        std::cout << "  ✓ 多尺度HOG特征 (64x64 + 128x128)" << std::endl;
-        std::cout << "  ✓ SVM自动参数调优" << std::endl;
-        std::cout << "  ✓ 预期识别率提升 15-25%" << std::endl;
     }
     std::cout << std::endl;
 
@@ -33,8 +29,9 @@ int main(int argc, char *argv[])
     SimpleDogClassifier classifier(use_optimizations);
 
     // 2. 设置数据路径
-    std::string images_dir = "F:/source/Project/Cpp/Image_Recognition_OpenCV/resource/low-resolution";       // 图片文件夹
-    std::string annotations_dir = "F:/source/Project/Cpp/Image_Recognition_OpenCV/resource/low-annotations"; // 标注文件夹
+    std::string resource_dir = "F:/work/project/Cpp/OpenCV/Image_Recognition_OpenCV/resource";
+    std::string images_dir = resource_dir + "/low-resolution";       // 图片文件夹
+    std::string annotations_dir = resource_dir + "/low-annotations"; // 标注文件夹
 
     std::cout << "图片目录: " << images_dir << std::endl;
     std::cout << "标注目录: " << annotations_dir << std::endl;
